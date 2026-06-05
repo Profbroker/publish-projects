@@ -1,0 +1,612 @@
+<!--
+  ProfBro · Landing for profbroker.com
+  ─────────────────────────────────────
+  Drop-in HTML block for Tilda T123 (Custom HTML).
+  Self-contained: HTML + CSS + minimal JS, no external deps except Google Font.
+  All class names prefixed with `pb-` to avoid Tilda conflicts.
+
+  Anchors required by Meta App Review for WhatsApp Business permissions:
+    #privacy        Privacy Policy
+    #terms          Terms of Service
+    #data-deletion  Data Deletion Instructions
+-->
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+  .pb-root {
+    --pb-bg: #ffffff;
+    --pb-bg-alt: #f6f8fb;
+    --pb-fg: #0e1726;
+    --pb-muted: #5b6577;
+    --pb-border: #e3e8f0;
+    --pb-accent: #2563eb;
+    --pb-accent-2: #1d4ed8;
+    --pb-good: #16a34a;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--pb-fg);
+    background: var(--pb-bg);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .pb-root * { box-sizing: border-box; }
+  .pb-root a { color: var(--pb-accent); text-decoration: none; }
+  .pb-root a:hover { color: var(--pb-accent-2); text-decoration: underline; }
+  .pb-root h1, .pb-root h2, .pb-root h3 { margin: 0 0 0.6em; line-height: 1.2; font-weight: 700; }
+  .pb-root p { margin: 0 0 1em; }
+  .pb-root ul { padding-left: 1.2em; margin: 0 0 1em; }
+  .pb-root li { margin-bottom: 0.35em; }
+  .pb-root .pb-muted { color: var(--pb-muted); }
+
+  .pb-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ===== Hero ===== */
+  .pb-hero {
+    padding: 72px 0 56px;
+    background: linear-gradient(180deg, #f3f6fc 0%, #ffffff 100%);
+    border-bottom: 1px solid var(--pb-border);
+  }
+  .pb-logo {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin-bottom: 48px;
+  }
+  .pb-logo span { color: var(--pb-accent); }
+  .pb-hero h1 {
+    font-size: clamp(32px, 5vw, 52px);
+    letter-spacing: -0.02em;
+    max-width: 800px;
+  }
+  .pb-hero h1 .pb-accent { color: var(--pb-accent); }
+  .pb-hero .pb-lead {
+    font-size: 18px;
+    color: var(--pb-muted);
+    max-width: 640px;
+    margin-top: 14px;
+  }
+  .pb-hero-cta {
+    display: inline-block;
+    margin-top: 28px;
+    background: var(--pb-accent);
+    color: #fff;
+    padding: 12px 22px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 15px;
+  }
+  .pb-hero-cta:hover { background: var(--pb-accent-2); color: #fff; text-decoration: none; }
+
+  /* ===== Section base ===== */
+  .pb-section {
+    padding: 64px 0;
+    border-bottom: 1px solid var(--pb-border);
+  }
+  .pb-section h2 {
+    font-size: clamp(24px, 3vw, 34px);
+    letter-spacing: -0.01em;
+  }
+  .pb-section h2 + .pb-section-lead {
+    font-size: 17px;
+    color: var(--pb-muted);
+    max-width: 700px;
+    margin-bottom: 36px;
+  }
+
+  /* ===== Features grid ===== */
+  .pb-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+    margin-top: 8px;
+  }
+  .pb-card {
+    background: var(--pb-bg-alt);
+    border: 1px solid var(--pb-border);
+    border-radius: 10px;
+    padding: 24px;
+  }
+  .pb-card .pb-card-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    background: var(--pb-accent);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 14px;
+  }
+  .pb-card h3 { font-size: 18px; margin-bottom: 6px; }
+  .pb-card p { font-size: 15px; color: var(--pb-muted); margin: 0; }
+
+  /* ===== "For whom" list ===== */
+  .pb-for-whom {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 14px;
+  }
+  .pb-pill {
+    background: var(--pb-bg-alt);
+    border: 1px solid var(--pb-border);
+    border-radius: 8px;
+    padding: 14px 18px;
+    font-size: 15px;
+  }
+  .pb-pill strong { display: block; font-size: 15px; }
+  .pb-pill span { color: var(--pb-muted); font-size: 13px; }
+
+  /* ===== Contact ===== */
+  .pb-contact-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 32px;
+  }
+  @media (max-width: 720px) {
+    .pb-contact-grid { grid-template-columns: 1fr; }
+  }
+  .pb-contact-row {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 14px;
+    align-items: baseline;
+    font-size: 15px;
+  }
+  .pb-contact-label {
+    color: var(--pb-muted);
+    font-size: 13px;
+    width: 84px;
+    flex-shrink: 0;
+  }
+
+  /* ===== Legal blocks (Privacy / Terms / Data Deletion) ===== */
+  .pb-legal {
+    background: var(--pb-bg-alt);
+  }
+  .pb-legal h2 { margin-top: 0; }
+  .pb-legal h3 {
+    font-size: 17px;
+    margin-top: 26px;
+    margin-bottom: 8px;
+  }
+  .pb-legal p, .pb-legal li {
+    font-size: 14.5px;
+    color: var(--pb-fg);
+  }
+  .pb-legal-meta {
+    font-size: 13px;
+    color: var(--pb-muted);
+    margin-bottom: 24px;
+  }
+
+  /* ===== Footer ===== */
+  .pb-footer {
+    padding: 36px 0;
+    background: #0e1726;
+    color: #aab3c3;
+    font-size: 13.5px;
+  }
+  .pb-footer a { color: #cdd6e4; }
+  .pb-footer a:hover { color: #fff; }
+  .pb-footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 32px;
+  }
+  @media (max-width: 720px) {
+    .pb-footer-grid { grid-template-columns: 1fr; }
+  }
+  .pb-footer h4 {
+    color: #fff;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin: 0 0 12px;
+  }
+  .pb-footer ul { list-style: none; padding: 0; margin: 0; }
+  .pb-footer li { margin-bottom: 6px; }
+  .pb-footer-legal {
+    margin-top: 28px;
+    padding-top: 20px;
+    border-top: 1px solid #233148;
+    font-size: 12.5px;
+    color: #6c7993;
+  }
+</style>
+
+<div class="pb-root">
+
+  <!-- ==================== HERO ==================== -->
+  <section class="pb-hero">
+    <div class="pb-container">
+      <div class="pb-logo">Prof<span>Bro</span></div>
+      <h1>
+        Operating system for service businesses —<br>
+        <span class="pb-accent">CRM, finance and SMM in one place.</span>
+      </h1>
+      <p class="pb-lead">
+        ProfBro brings customer pipelines, immutable financial records and
+        social-media scheduling into a single multi-tenant workspace —
+        built for yacht charter operators, sailing schools and other
+        small service businesses.
+      </p>
+      <a href="mailto:k.roletskiy@profbroker.com" class="pb-hero-cta">Get in touch →</a>
+    </div>
+  </section>
+
+  <!-- ==================== WHAT IS PROFBRO ==================== -->
+  <section class="pb-section" id="product">
+    <div class="pb-container">
+      <h2>What is inside</h2>
+      <p class="pb-section-lead">
+        Three tools that small service businesses normally buy separately —
+        unified into one workflow with shared contacts, deals and bookings.
+      </p>
+
+      <div class="pb-features">
+        <div class="pb-card">
+          <div class="pb-card-icon">⊜</div>
+          <h3>CRM</h3>
+          <p>
+            Pipelines, deals, tasks, bookings, contacts. Server-side filters
+            and saved presets. Custom fields per pipeline. Inbox unifying
+            WhatsApp, Instagram and web forms.
+          </p>
+        </div>
+        <div class="pb-card">
+          <div class="pb-card-icon">₽</div>
+          <h3>Finance</h3>
+          <p>
+            Income and expenses with immutable transactions. Corrections
+            create new records, never overwrite — a real audit trail.
+            Multi-currency, account-aware reporting.
+          </p>
+        </div>
+        <div class="pb-card">
+          <div class="pb-card-icon">▷</div>
+          <h3>SMM scheduler</h3>
+          <p>
+            Plan and publish to Instagram, Telegram and LinkedIn from one
+            calendar. Reuse the same media library across channels and
+            track performance per account.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== WHO IT IS FOR ==================== -->
+  <section class="pb-section" id="audience">
+    <div class="pb-container">
+      <h2>Who we built it for</h2>
+      <p class="pb-section-lead">
+        Service businesses with a few people and many touchpoints —
+        where a missed message or a forgotten booking costs real money.
+      </p>
+
+      <div class="pb-for-whom">
+        <div class="pb-pill">
+          <strong>Yacht charter operators</strong>
+          <span>Hourly rentals, multi-day charters, conflict-free bookings</span>
+        </div>
+        <div class="pb-pill">
+          <strong>Sailing &amp; sports schools</strong>
+          <span>Course pipelines, instructor scheduling, certification flow</span>
+        </div>
+        <div class="pb-pill">
+          <strong>Small B2C service teams</strong>
+          <span>Beauty, fitness, repair, tours — anyone with a booking flow</span>
+        </div>
+        <div class="pb-pill">
+          <strong>Boutique B2B agencies</strong>
+          <span>Long sales cycles, custom fields, per-deal economics</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CONTACT ==================== -->
+  <section class="pb-section" id="contact">
+    <div class="pb-container">
+      <h2>Contact</h2>
+      <div class="pb-contact-grid">
+        <div>
+          <p class="pb-muted">
+            We are currently building ProfBro with a small group of design partners.
+            For partnership, demo or onboarding requests — reach out by email.
+          </p>
+          <p class="pb-muted">
+            Мы строим ProfBro с небольшой группой первых клиентов.
+            По вопросам внедрения и партнёрства — пишите на почту ниже.
+          </p>
+        </div>
+        <div>
+          <div class="pb-contact-row">
+            <span class="pb-contact-label">Email</span>
+            <a href="mailto:k.roletskiy@profbroker.com">k.roletskiy@profbroker.com</a>
+          </div>
+          <div class="pb-contact-row">
+            <span class="pb-contact-label">Founder</span>
+            <span>Kirill Roletskiy</span>
+          </div>
+          <div class="pb-contact-row">
+            <span class="pb-contact-label">Country</span>
+            <span>Azerbaijan, Baku</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PRIVACY POLICY ==================== -->
+  <section class="pb-section pb-legal" id="privacy">
+    <div class="pb-container">
+      <h2>Privacy Policy</h2>
+      <p class="pb-legal-meta">Last updated: 8 May 2026</p>
+
+      <p>
+        This Privacy Policy describes how Roletskiy Kirill, an individual
+        entrepreneur registered in the Republic of Azerbaijan (TIN/VÖEN 1603772712,
+        registered address AZ1029, Baku, Nizami District, Heydar Aliyev Avenue 117),
+        operating under the brand <strong>ProfBro</strong> (the “Service”, “we”),
+        collects, uses and protects information when you use the Service or interact
+        with us via the website <a href="https://profbroker.com">profbroker.com</a>.
+      </p>
+
+      <h3>1. Information we collect</h3>
+      <ul>
+        <li><strong>Account data</strong> — name, email, phone, organisation,
+          provided by you when signing up or being invited as a team member.</li>
+        <li><strong>Customer data you store in ProfBro</strong> — contacts, deals,
+          tasks, bookings, transactions, messages and files you import or create.
+          You remain the controller of this data; we are the processor.</li>
+        <li><strong>Messaging data via WhatsApp Business Platform</strong> — when
+          you connect a WhatsApp Business Account through Meta’s Embedded Signup,
+          we receive the messages sent to and from your number, sender phone
+          numbers and profile names, message timestamps and delivery statuses.</li>
+        <li><strong>Technical data</strong> — IP address, user agent, log records,
+          authentication tokens; used for security and debugging.</li>
+      </ul>
+
+      <h3>2. How we use the information</h3>
+      <ul>
+        <li>To provide CRM, finance and SMM functionality you signed up for.</li>
+        <li>To deliver and store WhatsApp / Instagram / web-form messages on
+          your behalf and surface them in your inbox.</li>
+        <li>To send you operational and security notifications.</li>
+        <li>To monitor service quality, debug issues and prevent abuse.</li>
+      </ul>
+      <p>
+        We do <strong>not</strong> sell your data, do <strong>not</strong> use it
+        to train third-party AI models, and do <strong>not</strong> use it for
+        advertising profiling.
+      </p>
+
+      <h3>3. Where data is stored</h3>
+      <p>
+        ProfBro infrastructure runs on Hetzner servers located in the European
+        Union (Germany / Finland). Media files are stored in Cloudflare R2.
+        WhatsApp messages are received via Meta servers and stored in our
+        database alongside your other CRM data.
+      </p>
+
+      <h3>4. Sharing with third parties</h3>
+      <p>
+        We share data with the following processors strictly to operate the Service:
+      </p>
+      <ul>
+        <li>Hetzner Online GmbH — hosting</li>
+        <li>Cloudflare, Inc. — media storage and CDN</li>
+        <li>Meta Platforms, Inc. — WhatsApp Business Platform and Instagram Graph API</li>
+        <li>Anthropic, PBC — optional AI features inside the product</li>
+      </ul>
+
+      <h3>5. Retention</h3>
+      <p>
+        Your data is retained for as long as your account is active and for up
+        to 90 days after account deletion, after which it is permanently removed
+        from production systems. Backups containing data are rotated and fully
+        purged within 30 additional days.
+      </p>
+
+      <h3>6. Your rights</h3>
+      <p>
+        You can access, export, correct or delete your data at any time from
+        within the product. You can also request a manual export or full deletion
+        by writing to <a href="mailto:k.roletskiy@profbroker.com">k.roletskiy@profbroker.com</a>.
+        See <a href="#data-deletion">Data Deletion Instructions</a> below.
+      </p>
+
+      <h3>7. Children</h3>
+      <p>
+        ProfBro is a B2B product and is not directed at children under 16.
+        We do not knowingly collect data from children.
+      </p>
+
+      <h3>8. Changes to this policy</h3>
+      <p>
+        We may update this policy. Material changes will be communicated by email
+        and posted at this URL with an updated “Last updated” date.
+      </p>
+
+      <h3>9. Contact</h3>
+      <p>
+        Questions about this policy: <a href="mailto:k.roletskiy@profbroker.com">k.roletskiy@profbroker.com</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ==================== TERMS OF SERVICE ==================== -->
+  <section class="pb-section pb-legal" id="terms">
+    <div class="pb-container">
+      <h2>Terms of Service</h2>
+      <p class="pb-legal-meta">Last updated: 8 May 2026</p>
+
+      <p>
+        These Terms of Service (“Terms”) govern your use of <strong>ProfBro</strong>
+        (the “Service”), operated by Roletskiy Kirill, individual entrepreneur,
+        TIN/VÖEN 1603772712, Baku, Azerbaijan (“we”, “us”).
+        By creating an account or using the Service you agree to these Terms.
+      </p>
+
+      <h3>1. Service</h3>
+      <p>
+        ProfBro provides multi-tenant CRM, finance management and social-media
+        scheduling functionality. Specific features may evolve over time.
+      </p>
+
+      <h3>2. Accounts</h3>
+      <p>
+        You are responsible for safeguarding your credentials and for all activity
+        under your account. You must provide accurate registration information and
+        keep it up to date.
+      </p>
+
+      <h3>3. Acceptable use</h3>
+      <p>
+        You agree not to: (a) violate any applicable law, including data protection
+        and anti-spam laws, (b) send unsolicited messages via WhatsApp or any
+        connected channel in violation of the platform’s policies, (c) attempt to
+        probe, scan or test the vulnerability of the Service, (d) use the Service
+        to store or distribute malicious code.
+      </p>
+
+      <h3>4. WhatsApp Business Platform</h3>
+      <p>
+        When you connect a WhatsApp Business Account, you agree to comply with
+        the <a href="https://www.whatsapp.com/legal/business-policy" target="_blank" rel="noopener">WhatsApp Business Policy</a>
+        and the <a href="https://developers.facebook.com/devpolicy/" target="_blank" rel="noopener">Meta Platform Terms</a>.
+        You remain responsible for messaging quality, opt-in records and template
+        approval.
+      </p>
+
+      <h3>5. Customer data ownership</h3>
+      <p>
+        You own all data you put into ProfBro. We act as a data processor on your
+        behalf. You can export your data at any time via the product or by request.
+      </p>
+
+      <h3>6. Fees</h3>
+      <p>
+        Pricing is communicated on the website and/or in your service agreement.
+        During the early-access period the Service may be provided free of charge
+        to design partners.
+      </p>
+
+      <h3>7. Termination</h3>
+      <p>
+        You may terminate at any time. We may suspend or terminate accounts that
+        violate these Terms or pose a risk to the Service or other users.
+      </p>
+
+      <h3>8. Disclaimer and liability</h3>
+      <p>
+        The Service is provided “as is” without warranty of any kind. To the maximum
+        extent permitted by law, we are not liable for indirect, incidental or
+        consequential damages, or for loss of profits or data.
+      </p>
+
+      <h3>9. Governing law</h3>
+      <p>
+        These Terms are governed by the laws of the Republic of Azerbaijan.
+        Disputes shall be resolved in the courts of Baku.
+      </p>
+
+      <h3>10. Contact</h3>
+      <p>
+        Questions about these Terms: <a href="mailto:k.roletskiy@profbroker.com">k.roletskiy@profbroker.com</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ==================== DATA DELETION ==================== -->
+  <section class="pb-section pb-legal" id="data-deletion">
+    <div class="pb-container">
+      <h2>Data Deletion Instructions</h2>
+      <p class="pb-legal-meta">Last updated: 8 May 2026</p>
+
+      <p>
+        If you want us to delete personal data we hold about you, please follow
+        the steps below. This instruction page is published per Meta Platform
+        Terms requirement for apps that access user data.
+      </p>
+
+      <h3>Self-service deletion</h3>
+      <p>
+        Inside ProfBro you can delete individual contacts, messages, deals and
+        files at any time. You can also disconnect a WhatsApp Business Account
+        from <em>Settings → Channels</em>, which immediately stops further
+        message ingestion and revokes our access tokens.
+      </p>
+
+      <h3>Full account deletion</h3>
+      <ol>
+        <li>Send an email from your registered address to
+          <a href="mailto:k.roletskiy@profbroker.com">k.roletskiy@profbroker.com</a> with the
+          subject <strong>“Delete my ProfBro account”</strong>.</li>
+        <li>Include the workspace slug (subdomain) and the email of the workspace owner.</li>
+        <li>We will confirm receipt within 3 business days and complete deletion
+          within 30 calendar days. Backups containing residual data are purged
+          within an additional 30 days.</li>
+      </ol>
+
+      <h3>WhatsApp message data</h3>
+      <p>
+        WhatsApp messages received via the Embedded Signup integration are stored
+        in your workspace. They are deleted together with the workspace per the
+        process above. Disconnecting the channel alone retains historical messages
+        in your inbox unless you also delete them manually.
+      </p>
+
+      <h3>Contact</h3>
+      <p>
+        For any question about deletion or data subject requests:
+        <a href="mailto:k.roletskiy@profbroker.com">k.roletskiy@profbroker.com</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="pb-footer">
+    <div class="pb-container">
+      <div class="pb-footer-grid">
+        <div>
+          <h4>ProfBro</h4>
+          <p>
+            Operating system for small service businesses.<br>
+            CRM · Finance · SMM — in one place.
+          </p>
+        </div>
+        <div>
+          <h4>Product</h4>
+          <ul>
+            <li><a href="#product">What's inside</a></li>
+            <li><a href="#audience">Who it's for</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#privacy">Privacy Policy</a></li>
+            <li><a href="#terms">Terms of Service</a></li>
+            <li><a href="#data-deletion">Data Deletion</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="pb-footer-legal">
+        © 2026 ProfBro · Operated by Individual Entrepreneur Roletskiy Kirill,
+        TIN/VÖEN 1603772712, registered at AZ1029, Baku, Nizami District,
+        Heydar Aliyev Avenue 117, Republic of Azerbaijan ·
+        <a href="mailto:k.roletskiy@profbroker.com">k.roletskiy@profbroker.com</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
