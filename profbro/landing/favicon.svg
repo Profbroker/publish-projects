@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <!-- ProfBro App Icon, 1024×1024, для Meta App Review -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a2238"/>
+      <stop offset="100%" stop-color="#0f1115"/>
+    </linearGradient>
+  </defs>
+  <!-- background — закруглённый квадрат как iOS-icons -->
+  <rect width="1024" height="1024" rx="224" ry="224" fill="url(#bg)"/>
+  <!-- "PB" одним текстовым блоком, центрированным по обеим осям -->
+  <text x="512" y="512"
+        text-anchor="middle"
+        dominant-baseline="central"
+        font-family="-apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="560"
+        font-weight="700"
+        letter-spacing="-20">
+    <tspan fill="#4f8ef7">P</tspan><tspan fill="#e6e6e6">B</tspan>
+  </text>
+</svg>
