@@ -44,23 +44,36 @@
     padding: 0 24px;
   }
 
-  /* ===== Hero ===== */
-  .pb-hero {
-    padding: 72px 0 56px;
-    background: linear-gradient(180deg, #f3f6fc 0%, #ffffff 100%);
+  /* ===== Header ===== */
+  .pb-header {
+    padding: 20px 0;
     border-bottom: 1px solid var(--pb-border);
+    background: #fff;
   }
+  .pb-header .pb-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .pb-header-nav { display: flex; gap: 28px; }
+  .pb-header-nav a { color: var(--pb-text); font-size: 15px; font-weight: 500; }
+  .pb-header-nav a:hover { color: var(--pb-accent); text-decoration: none; }
   .pb-logo {
     font-size: 22px;
     font-weight: 700;
     letter-spacing: -0.01em;
-    margin-bottom: 48px;
   }
   .pb-logo span { color: var(--pb-accent); }
+
+  /* ===== Hero ===== */
+  .pb-hero {
+    padding: 72px 0 56px;
+    background: linear-gradient(180deg, #f3f6fc 0%, #ffffff 100%);
+  }
   .pb-hero h1 {
     font-size: clamp(32px, 5vw, 52px);
     letter-spacing: -0.02em;
-    max-width: 800px;
+    max-width: 960px;
   }
   .pb-hero h1 .pb-accent { color: var(--pb-accent); }
   .pb-hero .pb-lead {
@@ -222,13 +235,25 @@
 
 <div class="pb-root">
 
+  <!-- ==================== HEADER ==================== -->
+  <header class="pb-header">
+    <div class="pb-container">
+      <div class="pb-logo">Prof<span>Bro</span></div>
+      <nav class="pb-header-nav">
+        <a href="#product">Product</a>
+        <a href="#how">How it works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="https://app.profbroker.com/login">Sign in</a>
+      </nav>
+    </div>
+  </header>
+
   <!-- ==================== HERO ==================== -->
   <section class="pb-hero">
     <div class="pb-container">
-      <div class="pb-logo">Prof<span>Bro</span></div>
       <h1>
-        Operating system for service businesses —<br>
-        <span class="pb-accent">CRM, finance and SMM in one place.</span>
+        Operating system for service businesses —
+        <br><span class="pb-accent">CRM, finance and SMM in one place.</span>
       </h1>
       <p class="pb-lead">
         ProfBro brings customer pipelines, immutable financial records and
